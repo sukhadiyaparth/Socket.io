@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="Sendmessage" placeholder="enter your messsage">
+    <button id="Send"> Send</button>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+      const socket = io();
+
+    const text = document.getElementById("Sendmessage");
+    const button = document.getElementById("Send");
+
+socket.on('message',(messsage)=>console.log(messsage));
+
+    button.addEventListener("click",(e)=>{
+        const messsage = text.value;
+        console.log(messsage) 
+        socket.emit("user-message",messsage)
+    })
+</script>
+</html>
